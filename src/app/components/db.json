@@ -1,0 +1,115 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": 2,
+      "firstName": "shams",
+      "lastName": "",
+      "email": "",
+      "salary": "",
+      "mobile": ""
+    },
+    {
+      "id": 3,
+      "firstName": "shamsaldeen",
+      "lastName": "",
+      "email": "",
+      "salary": "",
+      "mobile": ""
+    },
+    {
+      "id": 4,
+      "firstName": "shamsaldeen",
+      "lastName": "",
+      "email": "",
+      "salary": "",
+      "mobile": ""
+    },
+    {
+      "id": 5,
+      "firstName": "shams",
+      "lastName": "",
+      "email": "",
+      "salary": "",
+      "mobile": ""
+    },
+    {
+      "id": 6,
+      "firstName": "alex",
+      "lastName": "david",
+      "email": "alexdavid@gmail.com",
+      "salary": "90,000",
+      "mobile": "54876514"
+    },
+    {
+      "id": 7,
+      "firstName": "fadsf",
+      "lastName": "adsf",
+      "email": "asdfasdf",
+      "salary": "5456486",
+      "mobile": "441564541"
+    },
+    {
+      "id": 8,
+      "firstName": null,
+      "lastName": null,
+      "email": null,
+      "salary": null,
+      "mobile": null
+    },
+    {
+      "id": 9,
+      "firstName": null,
+      "lastName": null,
+      "email": null,
+      "salary": null,
+      "mobile": null
+    },
+    {
+      "id": 10,
+      "firstName": null,
+      "lastName": null,
+      "email": null,
+      "salary": null,
+      "mobile": null
+    },
+    {
+      "id": 11,
+      "firstName": null,
+      "lastName": null,
+      "email": null,
+      "salary": null,
+      "mobile": null
+    },
+    {
+      "id": 12,
+      "firstName": "",
+      "lastName": "",
+      "email": "",
+      "salary": "",
+      "mobile": ""
+    },
+    {
+      "id": 13,
+      "firstName": "sam",
+      "lastName": "ali",
+      "email": "samali@gmail.com",
+      "salary": "90,000",
+      "mobile": "123534636"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
