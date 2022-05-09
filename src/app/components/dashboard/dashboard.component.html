@@ -1,88 +1,232 @@
 <header>
-    <nav class="navbar navbar-expand-lg p-0">
-        <div class="container-fluid bg-dark p-3 d-flex justify-content-between">
-            <a class="navbar-brand text-light" href="#">Angular CRUD</a>
-            <div class="modalData">
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="showAddButton()">
-                    Add Employee
-                </button>
-            </div>
-        </div>
-    </nav>
+  <nav class="navbar navbar-expand-lg p-0 bg-dark">
+    <div class="container-fluid p-3 d-flex justify-content-between">
+      <a class="navbar-brand text-light" href="#">Angular CRUD</a>
+      <div class="modalData">
+        <button
+          type="button"
+          class="btn btn-success"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
+          (click)="showAddButton()"
+        >
+          Add Employee
+        </button>
+      </div>
+    </div>
+  </nav>
 </header>
 
 <!-- dash board section -->
 <section id="dashBoard">
-    <main>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Employee ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Mobil No.</th>
-                    <th>Salary</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let empDetail of EmployeeDetails"> 
-                    <td scope="row"> {{empDetail.id}} </td>
-                    <td scope= "row"> {{empDetail.firstName}} </td>
-                    <td scope= "row"> {{empDetail.lastName}} </td>
-                    <td scope= "row"> {{empDetail.email}} </td>
-                    <td scope= "row"> {{empDetail.mobile}} </td>
-                    <td scope= "row"> {{empDetail.salary}} </td>
-                    <td scope= "row">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="EditValues(empDetail)">
-                            Edit
-                        </button>
-                        <button class="btn btn-danger" (click)="deleteEmployee(empDetail.id)">Delete</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </main>
+  <main>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Employee ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Mobil No.</th>
+          <th>Salary</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let empDetail of EmployeeDetails">
+          <td scope="row">{{ empDetail.id }}</td>
+          <td scope="row">{{ empDetail.firstName }}</td>
+          <td scope="row">{{ empDetail.lastName }}</td>
+          <td scope="row">{{ empDetail.email }}</td>
+          <td scope="row">{{ empDetail.mobile }}</td>
+          <td scope="row">{{ empDetail.salary }}</td>
+          <td scope="row">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+              (click)="EditValues(empDetail)"
+            >
+              Edit
+            </button>
+            <button
+              class="btn btn-danger"
+              (click)="deleteEmployee(empDetail.id)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+  <!-- help button -->
+  <div class="helpButton d-flex justify-content-end px-3" *ngIf="showHelp">
+    <button
+      type="button"
+      class="btn btn-primary btn-lg"
+      data-bs-toggle="modal"
+      data-bs-target="#modelId"
+    >
+      Help
+    </button>
+  </div>
 </section>
 
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<!-- Help Modal -->
+<div
+  class="modal fade"
+  id="modelId"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modelTitleId"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
-        <div class="modal-header">
+      <div class="modal-header">
+        <h5 class="modal-title">About This demo</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          This Demo use json-serve to process the CRUD data <br />
+          to use the server :
+        </p>
+        <ul>
+          <li>Install node.js in your machine</li>
+          <li>
+            Install the json-server using this command: <br />
+            <code>npm install -g json-server</code>
+          </li>
+          <li>
+            Run the server in a new terminal using this command: <br />
+            <code>json-server db.json</code>
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Form Modal -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Add new Employee</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form [formGroup]= "formValues">
-                <div class="mb-3">
-                  <label for="" class="form-label">First Name</label>
-                  <input type="text" class="form-control" formControlName = "firstName" name="" id="" aria-describedby="helpId" placeholder="">
-                </div>
-                <div class="mb-3">
-                  <label for="" class="form-label">last Name</label>
-                  <input type="text" class="form-control" formControlName = "lastName" id="" aria-describedby="helpId" placeholder="">
-                </div>
-                <div class="mb-3">
-                    <label for="" class="form-label">Email ID</label>
-                    <input type="text" class="form-control" formControlName = "email" id="" aria-describedby="helpId" placeholder="">
-                  </div>
-                <div class="mb-3">
-                <label for="" class="form-label">Mobile No</label>
-                <input type="text" class="form-control" formControlName = "mobile" id="" aria-describedby="helpId" placeholder="">
-                </div>
-                <div class="mb-3">
-                    <label for="" class="form-label">Salary</label>
-                    <input type="text" class="form-control" formControlName = "salary" id="" aria-describedby="helpId" placeholder="">
-                </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button type="button" id="close" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button *ngIf="showAdd" type="button" class="btn btn-primary" (click)="postEmployeeDetails()">Add</button>
-            <button *ngIf="showUpdate" type="button" class="btn btn-primary" (click)="UpdateEmployeeDetails()">Update</button>
-        </div>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formValues">
+          <div class="mb-3">
+            <label for="" class="form-label">First Name</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="firstName"
+              name=""
+              id=""
+              aria-describedby="helpId"
+              placeholder=""
+            />
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">last Name</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="lastName"
+              id=""
+              aria-describedby="helpId"
+              placeholder=""
+            />
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Email ID</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="email"
+              id=""
+              aria-describedby="helpId"
+              placeholder=""
+            />
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Mobile No</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="mobile"
+              id=""
+              aria-describedby="helpId"
+              placeholder=""
+            />
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Salary</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="salary"
+              id=""
+              aria-describedby="helpId"
+              placeholder=""
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          id="close"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button
+          *ngIf="showAdd"
+          type="button"
+          class="btn btn-primary"
+          (click)="postEmployeeDetails()"
+        >
+          Add
+        </button>
+        <button
+          *ngIf="showUpdate"
+          type="button"
+          class="btn btn-primary"
+          (click)="UpdateEmployeeDetails()"
+        >
+          Update
+        </button>
+      </div>
     </div>
-    </div>
+  </div>
 </div>

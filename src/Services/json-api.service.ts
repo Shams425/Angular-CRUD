@@ -11,7 +11,8 @@ export class JSON_APIService {
 
   postEmployee(data: any) {
     return this.http.post<any>("http://localhost:3000/posts", data).pipe(map((res:any) => {
-      return res; 
+      return res;
+      
     }))
   }
 
