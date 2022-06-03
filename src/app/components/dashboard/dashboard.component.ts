@@ -11,10 +11,11 @@ import { JSON_APIService } from "src/Services/json-api.service";
 export class DashboardComponent implements OnInit {
   formValues!: FormGroup;
   EmployeeDataObj: EmployeeDataModel = new EmployeeDataModel();
-  EmployeeDetails!: any;
-  showAdd!: boolean;
-  showUpdate!: boolean;
-  showHelp!: boolean;
+  EmployeeDetails: any = [];
+  showAdd: boolean = true;
+  showUpdate: boolean = false;
+  showHelp: boolean = true;
+  formHeader: string = "";
 
   constructor(private api: JSON_APIService, private formBuilder: FormBuilder) {}
 
@@ -32,10 +33,12 @@ export class DashboardComponent implements OnInit {
   showAddButton() {
     this.showAdd = true;
     this.showUpdate = false;
+    this.formHeader = "Add new Employee";
   }
   showUpdateButton() {
     this.showAdd = false;
     this.showUpdate = true;
+    this.formHeader = "Update Employee data";
   }
 
   getEmployeeDetails() {
@@ -56,7 +59,6 @@ export class DashboardComponent implements OnInit {
 
     this.api.postEmployee(this.EmployeeDataObj).subscribe(
       (data) => {
-        console.log(data);
         alert("User Were add successfully");
         //close the form automatic
         let closeBtn = document.getElementById("close");
@@ -90,8 +92,6 @@ export class DashboardComponent implements OnInit {
     this.formValues.controls["email"].setValue(index.email);
     this.formValues.controls["mobile"].setValue(index.mobile);
     this.formValues.controls["salary"].setValue(index.salary);
-
-    console.log(this.formValues.value);
   }
 
   UpdateEmployeeDetails() {
@@ -105,11 +105,19 @@ export class DashboardComponent implements OnInit {
       .updateEmployee(this.EmployeeDataObj, this.EmployeeDataObj.id)
       .subscribe((data) => {
         alert("Updated Successfully");
+
         let closeBtn = document.getElementById("close");
         closeBtn?.click();
         console.log();
         this.formValues.reset();
         this.getEmployeeDetails();
       });
+
+    //restore the id back after change it in the EditValues method
+    this.EmployeeDataObj.id = this.EmployeeDetails.length + 1;
+  }
+  restoreId() {
+    this.EmployeeDataObj.id = this.EmployeeDetails.length + 1;
+    this.formValues.reset();
   }
 }

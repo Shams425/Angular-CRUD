@@ -133,12 +133,13 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Add new Employee</h5>
+        <h5 class="modal-title" id="staticBackdropLabel">{{ formHeader }}</h5>
         <button
           type="button"
           class="btn-close"
           data-bs-dismiss="modal"
           aria-label="Close"
+          (click)="restoreId()"
         ></button>
       </div>
       <div class="modal-body">
@@ -207,6 +208,7 @@
           id="close"
           class="btn btn-secondary"
           data-bs-dismiss="modal"
+          (click)="restoreId()"
         >
           Close
         </button>
